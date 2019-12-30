@@ -1,3 +1,6 @@
+import json
+
+
 class Skill():
     def __init__(self, skill_ranks, skill_info, skill_options):
         self.intensity = skill_info["intensity"]
@@ -15,34 +18,35 @@ class Skill():
         if skill_options["aura_synergy"]["active"]:
             self.aura_synergy(skill_ranks["aura_synergy"])
         if skill_options["compression"]["active"]:
-            self.compression(skill_ranks["compression"], skill_options["compression"]["compress"])
+            self.compression(
+                skill_ranks["compression"], skill_options["compression"]["compress"])
         if skill_options["channel_mastery"]["active"]:
             self.channel_mastery(skill_options["channel_mastery"]["mastery"])
 
     def amplify(self, rank):
         self.intensity *= 0.2 * rank
         self.cost *= 0.3 * rank
-    
+
     def extend(self, rank):
         self.cost *= 0.3 * rank
         self.skill_range += rank
-    
+
     def aura_focus(self, rank):
         self.intensity *= 0.3 * rank
         self.cost *= 0.3 * rank
         self.skill_range *= 0.3 * rank
-    
+
     def aura_synergy(self, rank):
         # TODO: make multiplier equal to sum of all ranks
         self.intensity += 0.08 * rank
         self.skill_range += 0.08 * rank
-    
+
     def compression(self, rank, compress):
         # Unique; can trade off skill_range (compress, in meters) for intensity
         # "Increase" instead of multiply. Might be additive?
         self.intensity += 0.002 * rank * compress
         self.skill_range -= compress
-    
+
     def channel_mastery(self, mastery):
         # Can control intensity (and by extension, cost). Intensity reprented as % from 0 to 2
         # rank = 10
@@ -96,3 +100,5 @@ class Stats():
         print(winter.intensity)
         print(winter.skill_range)
         print(winter.cost)
+
+

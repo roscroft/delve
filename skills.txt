@@ -1,0 +1,27 @@
+Notes:
+
+"Type" (additive or multiplicative) is implied by the base value - a base of 0 means the skill is additive, and a base of 1
+means the skill is multiplicative
+
+But interior is additive. A base of 1, a per rank of 0.2, and a rank of 10 implies:
+value_at_rank = base + (rank * per_rank) => 1 + (10 * 0.2) = 3
+
+Order goes intensity -> cost -> range
+
+Aura synergy is unique. Modified value is based off of ranks in other auras. Can't be handled in the json, but the formula is
+base + (rank * 0.001 * total_aura_ranks). It is additive to intensity and range.
+As of chapter 75, this is: 0 + (10 * 0.001 * 80) = 0.8. 80% increase to intensity and range.
+
+Aura compression is also unique. Increase intensity by 0.002 * rank per meter of compression. TODO: there is a minimum fidelity
+somewhere. It does require an argument though, will list under arg_effects and the heading "var" to indicate the range is a 
+reduced variable. Base is 0 to indicate additive (or subtractive in this case
+
+Channel mastery is the final unique. Multiplies aura intensity by 0%-200% per user discretion. Loosely discretized into 10%
+buckets. Indicated with a base of 1 and a var of 1.
+
+Focus also affects intensity of certain auras. Not reflected in json but must be considered when modeling.
+
+Winter is additive.
+
+Meta skills are per-skill options.
+Offensive auras, defensive auras, utility auras, and utilities are individual skills/instances of the skills class.
