@@ -1,12 +1,10 @@
 import json
 
-class SkillSheet():
-    def __init__(self, skills_file):
-        with open(skills_file) as skills_json:
-            skill_data = json.load(skills_json)
+def json_parser(skills_file):
+    with open(skills_file) as skills_json:
+        skill_data = json.load(skills_json)
+    return skill_data
         
-        self.meta_skills = skill_data["meta_skills"]
-
 class MetaSkill():
     def __init__(self, **kwargs):
         self.full_name = kwargs["full_name"]
@@ -43,40 +41,44 @@ class MetaSkill():
             elif base == 1:
                 self.multipliers[change] = base
 
+class AuraSynergy(MetaSkill):
+    def __init__(self, synergy, **kwargs):
+        # Synergy is the sum of all aura ranks
+        self.synergy = synergy
+        super().__init__(**kwargs)
+        self.adders["intensity"] *= self.synergy
+        self.adders["range"] *= self.synergy
+
 class AuraCompression(MetaSkill):
     def __init__(self, compress, **kwargs):
         # Compress is a number of meters
         self.compress = compress
         super().__init__(**kwargs)
-        self.adders["intensity"] *= compress
-        self.adders["range"] -= compress
+        self.adders["intensity"] *= self.compress
+        # This is a direct range addition, not a percentage added
+        self.adders["range"] -= self.compress
 
 class ChannelMastery(MetaSkill):
     def __init__(self, channel, **kwargs):
         # Channel is a multiplier, 0 to 2
         self.channel = channel
         super().__init__(**kwargs)
-        self.multipliers["intensity"] *= channel
-        self.multipliers["cost"] *= channel
-
-class Skill(SkillSheet):
-    def __init__(self, **kwargs):
-        for key, value in kwargs.items():
-            self.__setattr__(key, kwargs[value])
-    
-    def return_info(self):
-        return self.__dict__
-
+        self.multipliers["intensity"] *= self.channel
+        self.multipliers["cost"] *= self.channel
 
 def main():
-    with open("skills.json") as skills_json:
-        skill_data = json.load(skills_json)
+    skill_data = json_parser("skills.json")
     
     meta_skills = skill_data["meta_skills"]
     amplify_info = meta_skills[0]
     amplify = MetaSkill(**amplify_info)
     print(f"Amplify adders: {amplify.adders}")
     print(f"Amplify multipliers: {amplify.multipliers}")
+
+    aura_synergy_info = meta_skills[3]
+    synergy = 80
+    aura_synergy = AuraSynergy(synergy, **aura_synergy_info)
+    print(f"Aura Synergy adders: {aura_synergy.adders}")
 
     compression_info = meta_skills[4]
     compress = 5
