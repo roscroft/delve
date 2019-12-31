@@ -25,3 +25,5 @@ Winter is additive.
 
 Meta skills are per-skill options.
 Offensive auras, defensive auras, utility auras, and utilities are individual skills/instances of the skills class.
+
+Essence well cost is equivalent to its transfer rate.

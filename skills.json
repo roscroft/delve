@@ -1,9 +1,8 @@
 {
-    "meta_skills": [
-        {
+    "meta_skills": {
+        "amplify": {
             "full_name": "Amplify Aura",
             "description": "Increases aura intensity and cost.",
-            "name": "amplify",
             "rank": 10,
             "effects": [
                 {
@@ -18,10 +17,9 @@
                 }
             ]
         },
-        {
+        "extend": {
             "full_name": "Extend Aura",
             "description": "Increases aura range and cost.",
-            "name": "extend",
             "rank": 10,
             "effects": [
                 {
@@ -36,10 +34,9 @@
                 }
             ]
         },
-        {
+        "aura_focus": {
             "full_name": "Aura Focus",
             "description": "Focus on an aura to boost its output.",
-            "name": "aura_focus",
             "rank": 10,
             "effects": [
                 {
@@ -59,10 +56,9 @@
                 }
             ]
         },
-        {
+        "aura_synergy": {
             "full_name": "Aura Synergy",
             "description": "Increase all aura output by 1.0% for each rank in any aura.",
-            "name": "aura_synergy",
             "rank": 10,
             "effects": [
                 {
@@ -77,10 +73,9 @@
                 }
             ]
         },
-        {
+        "aura_compression": {
             "full_name": "Aura Compression",
             "description": "Compress aura output, reducing range to boost intensity.",
-            "name": "aura_compression",
             "rank": 5,
             "effects": [
                 {
@@ -96,10 +91,9 @@
                 }
             ]
         },
-        {
+        "channel_mastery": {
             "full_name": "Channel Mastery",
             "description": "Allows intuitive control of channeled skill intensity.",
-            "name": "channel_mastery",
             "rank": 10,
             "arg_effects": [
                 {
@@ -112,105 +106,95 @@
                 }
             ]
         }
-    ],
-    "offensive_auras": [
-        {
+    },
+    "offensive_auras": {
+        "immolate": {
             "full_name": "Immolate",
             "description": "X heat (fcs) damage per second to entities and environment. Sufficient damage causes ignition.",
-            "name": "immolate",
             "rank": 10,
             "base_intensity": 7.5,
-            "per_rank_intensity": 7.5,
             "per_focus_intensity": 1,
             "base_cost": 5,
-            "base_cost_time": "s",
+            "cost_unit": "s",
             "base_range": 1
         },
-        {
+        "refrigerate": {
             "full_name": "Refrigerate",
             "description": "X cold (fcs) damage per second to entities and environment. Sufficient damage causes slow.",
-            "name": "immolate",
             "rank": 10,
             "base_intensity": 7.5,
             "per_focus_intensity": 1,
             "base_cost": 5,
-            "base_cost_unit": "second",
+            "cost_unit": "second",
             "base_range": 1
         }
-    ],
-    "defensive_auras": [
-        {
+    },
+    "defensive_auras": {
+        "force_ward": {
             "full_name": "Force Ward",
             "description": "Increases physical resistance by X% for all entities.",
-            "name": "force_ward",
             "rank": 10,
             "base_intensity": 0.03,
-            "base_cost": 1,
-            "base_cost_unit": "damage",
+            "base_cost": 0.1,
+            "cost_unit": "damage",
             "base_range": 1
         }
-    ],
-    "utility_auras": [
-        {
+    },
+    "utility_auras": {
+        "purify": {
             "full_name": "Purify",
             "description": "Purify poison, corruption, and contamination.",
-            "name": "purify",
             "rank": 10,
             "base_cost": 10,
-            "base_cost_time": "minute",
+            "cost_unit": "minute",
             "base_range": 1
         },
-        {
+        "detection": {
             "full_name": "Detection",
             "description": "Sense selected items of interest. Not occluded by mundane materials.",
-            "name": "detection",
             "rank": 10,
             "base_resolution": 1,
-            "base_resolution_unit": "meter",
+            "resolution_unit": "meter",
             "base_cost": 1,
-            "base_cost_time": "second",
+            "cost_unit": "second",
             "base_range": 1
         },
-        {
+        "essence_well": {
             "full_name": "Essence Well",
             "description": "Transfer mana to all entities within range, including user.",
-            "name": "essence_well",
             "rank": 10,
-            "base_transfer_rate": 1,
-            "base_transfer_rate_unit": "second",
+            "base_cost": 1,
+            "cost_unit": "second",
             "base_efficiency": 0.02,
             "base_range": 1
         },
-        {
+        "velocity": {
             "full_name": "Velocity",
             "description": "X% boost to speed for all entities.",
-            "name": "velocity",
             "rank": 10,
             "base_speed_boost": 0.1,
             "base_cost": 1,
-            "base_cost_unit": "second",
+            "cost_unit": "second",
             "base_range": 1
-        }
-    ],
-    "utilities": [
-        {
-            "full_name": "Mana Manipulation",
-            "description": "Allows internal control of mana. Allows expulsion of mana to environment. Allows transfer of mana to and from capacitive items with direct contact.",
-            "name": "mana_manipulation",
-            "rank": 6,
-            "base_transfer_rate": 140,
-            "per_focus_transfer_rate": 0,
-            "base_transfer_rate_unit": "second"
         },
-        {
+        "winter": {
             "full_name": "Winter",
             "description": "Boost mana regen by X% for all entities.",
-            "name": "winter",
             "rank": 10,
             "base_regen_boost": 0.1,
             "base_cost": 1,
-            "base_cost_unit": "hour",
+            "cost_unit": "hour",
             "base_range": 1
         }
-    ]
+    },
+    "utilities": {
+        "mana_manipulation": {
+            "full_name": "Mana Manipulation",
+            "description": "Allows internal control of mana. Allows expulsion of mana to environment. Allows transfer of mana to and from capacitive items with direct contact.",
+            "rank": 6,
+            "base_transfer_rate": 140,
+            "per_focus_transfer_rate": 0,
+            "transfer_rate_unit": "second"
+        }
+    }
 }
